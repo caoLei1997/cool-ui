@@ -1,0 +1,125 @@
+@import 'mixin.scss';
+
+.cool-btn-container {
+  display: inline-block;
+}
+
+.cool-btn {
+  @include btn;
+
+  @include btn-default($gray-900, $white, $secondary);
+
+  &-primary {
+    @include btn-variant-style($white, $primary, $primary)
+  }
+
+  &-danger {
+    @include btn-variant-style($white, $danger, $danger)
+  }
+
+  &-sweet {
+    @include btn-variant-style($white, $sweet, $sweet)
+  }
+
+  &-success {
+    @include btn-variant-style($white, $success, $success)
+  }
+
+  &-warning {
+    @include btn-variant-style($white, $warning, $warning)
+  }
+
+  &-info {
+    @include btn-variant-style($white, $info, $info)
+  }
+
+  &-link {
+    @include btn-link;
+  }
+
+  &-text {
+    @include btn-text;
+  }
+
+  &-lg {
+    @include btn-size($btn-height-lg,
+      $btn-padding-vertical-base,
+      $btn-padding-horizontal-lg,
+      $font-size-lg,
+      $btn-border-radius,
+    )
+  }
+
+  &-sm {
+    @include btn-size($btn-height-sm,
+      $btn-padding-vertical-sm,
+      $btn-padding-horizontal-sm,
+      $font-size-sm,
+      $btn-border-radius,
+    )
+  }
+
+  &-round {
+    border-radius: $btn-height-base;
+
+    .cool-btn-lg {
+      @include btn-size($btn-height-lg,
+        $btn-padding-vertical-base,
+        $btn-padding-horizontal-lg,
+        $font-size-lg,
+        $btn-height-lg,
+      )
+    }
+
+    .cool-btn-sm {
+      @include btn-size($btn-height-sm,
+        $btn-padding-vertical-sm,
+        $btn-padding-horizontal-sm,
+        $font-size-sm,
+        $btn-height-lg,
+      )
+    }
+  }
+
+
+
+  &[disabled],
+  &-disabled {
+    cursor: not-allowed;
+    color: #00000040;
+    border-color: #d9d9d9;
+    background: #f5f5f5;
+    text-shadow: none;
+    box-shadow: none;
+  }
+
+  &-circle {
+    min-width: $btn-height-base;
+    padding-right: 0;
+    padding-left: 0;
+    border-radius: 50%;
+
+    &.cool-btn-lg {
+      min-width: $btn-height-lg;
+    }
+
+    &.cool-btn-sm {
+      min-width: $btn-height-sm;
+    }
+  }
+
+  &-block {
+    display: block;
+    width: 100%;
+  }
+
+
+  &-texture {
+    background-image: url('~@/assets/texture.png');
+  }
+
+  // &-warning {
+  //   @include btn-variant-style($white, $primary, $primary)
+  // }
+
+}
