@@ -22,7 +22,7 @@ type ShapeType = 'default' | 'circle' | 'round';
 
 type SizeType = 'large' | 'middle' | 'small';
 
-interface ButtonPropsType {
+export interface ButtonPropsType {
   component: string;
   block: boolean;
   type: ButtonType;
