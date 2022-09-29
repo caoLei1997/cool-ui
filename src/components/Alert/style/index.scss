@@ -1,0 +1,37 @@
+@import './mixin.scss';
+
+.cool-alert {
+  margin: 0;
+  padding: $default-padding-sm $default-padding-md;
+  font-size: $font-size-base;
+  border-radius: $border-radius;
+
+
+  &-info {
+    @include alertStyle($info1, $info)
+  }
+
+  &-success {
+    @include alertStyle($success1, $success)
+  }
+
+  &-primary {
+    @include alertStyle($primary1, $primary)
+  }
+
+  &-warning {
+    @include alertStyle($warning1, $warning)
+  }
+
+  &-danger {
+    @include alertStyle($danger1, $danger)
+  }
+
+  &-sweet {
+    @include alertStyle($sweet1, $sweet)
+  }
+
+  &-suzukaze {
+    @include alertStyle($aoba-suzukaze, $sakura-matou)
+  }
+}

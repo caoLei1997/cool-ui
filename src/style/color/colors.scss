@@ -1,11 +1,65 @@
 // 颜色获取地址中国色
 $red: #ed556a !default; //山茶红
+$red1:#ffd5d4;
+
 $blue: #5698c3 !default; //晴蓝
 $blue2: #2376b7 !default; //天蓝
 $blue3: #2f90b9 !default; //云山蓝
+$blue4:#e9edfa !default;
+
 $green: #12aa9c !default; //美蝶绿
+$green1:#cffcee !default;
+
 $yellow: #f8c387 !default; //蛋壳黄
+$yellow1: #ffe1c7 !default; //蛋壳黄
+
 $grey: #d9d9d9 !default; //珍珠灰色
+
 $purple: #ad6598 !default; //豆蔻紫
+$purple1: #f8baef !default; //凤信紫ß
+
 $pink: #ea7293 !default; //丹紫红
-$cyan:#51c4d3 !default; // 瀑布蓝
+$pink1: #ffbfdc !default; //丁香紫
+
+$cyan:#4ce5f9 !default; // 瀑布蓝
+$cyan1:#8cebe8 !default; // 海天蓝
+
+
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
+
+$primary:$blue2 !default;
+$primary1:$blue4 !default;
+
+$secondary:$grey !default;
+
+$success:$green !default;
+$success1:$green1 !default;
+
+$info:$cyan !default;
+$info1:$cyan1 !default;
+
+$warning:$yellow !default;
+$warning1:$yellow1 !default;
+
+$danger:$red !default;
+$danger1:$red1 !default;
+
+$light:$gray-100 !default;
+
+$sweet:$pink;
+$sweet1:$pink1;
+
+$sakura-matou:$purple;
+$aoba-suzukaze:$purple1;
+
+$dark:$gray-800 !default;
