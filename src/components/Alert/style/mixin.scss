@@ -1,0 +1,8 @@
+@mixin alertStyle($background, $border-color, $icon-color: $border-color) {
+  background: $background;
+  .cool-alert-icon {
+    color: $icon-color;
+    display: flex;
+    margin: 1px $margin-xs 0 0;
+  }
+}
