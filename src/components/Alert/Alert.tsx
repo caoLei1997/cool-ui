@@ -1,4 +1,4 @@
-import React, { isValidElement, ReactElement, ReactNode } from 'react';
+import React, { isValidElement, ReactElement, ReactNode, useState } from 'react';
 import type { FC } from 'react';
 import { empty, getPrefixCls } from '@/utils';
 import type { BaseType } from '@/constant/baseType';
@@ -9,11 +9,12 @@ import CloseCircleFilled from '@ant-design/icons/CloseCircleFilled';
 import CloseOutlined from '@ant-design/icons/CloseOutlined';
 import ExclamationCircleFilled from '@ant-design/icons/ExclamationCircleFilled';
 import InfoCircleFilled from '@ant-design/icons/InfoCircleFilled';
+import CSSMotion from 'rc-motion';
 
 const iconMapFilled = {
   success: CheckCircleFilled,
   info: InfoCircleFilled,
-  error: CloseCircleFilled,
+  danger: CloseCircleFilled,
   warning: ExclamationCircleFilled,
 };
 
@@ -53,6 +54,9 @@ export interface AlertPropsType {
 
   /** 关闭动画结束时回调函数 */
   afterClose: () => void;
+
+  onMouseEnter?: React.MouseEventHandler<HTMLDivElement>;
+  onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 export type AlertType = Partial<AlertPropsType>;
@@ -62,7 +66,7 @@ const Alert: FC<AlertType> = (props) => {
     type,
     action,
     banner,
-    closeIcon,
+    closeIcon = <CloseOutlined />,
     closeable,
     closeText,
     description,
@@ -70,13 +74,21 @@ const Alert: FC<AlertType> = (props) => {
     icon,
     message,
   } = props;
-  const { onClose, afterClose } = props;
+  const { onClose, afterClose, onMouseEnter, onMouseLeave } = props;
+
+  const [close, setClose] = useState<boolean>(false);
+
+  const handleClose = () => {
+    console.log(111);
+
+    setClose(true);
+  };
 
   const prefixCls = getPrefixCls('alert');
 
   const isShowIcon = !showIcon;
 
-  const classes = classNames(prefixCls, `${prefixCls}-${type}`, {
+  const alertCls = classNames(prefixCls, `${prefixCls}-${type}`, {
     [`${prefixCls}-description`]: description,
     [`${prefixCls}-no-icon`]: isShowIcon,
     [`${prefixCls}-banner`]: banner,
@@ -84,7 +96,6 @@ const Alert: FC<AlertType> = (props) => {
 
   const enhancerIcon = () => {
     const iconType = iconMapFilled[type] || iconMapFilled['info'];
-    console.log('iconType: ', iconType);
     if (icon) {
       if (!isValidElement(icon)) return;
       const classed = classNames(`${prefixCls}-icon`, {
@@ -92,22 +103,19 @@ const Alert: FC<AlertType> = (props) => {
       });
       return React.cloneElement(icon, { className: classed, ...icon.props });
     }
-    console.log('iconType: ', iconType);
-
     return React.createElement(iconType, { className: `${prefixCls}-icon` });
   };
 
   // render
-  const iconNode = (
-    <span className={`${prefixCls}-icon`}>
-      {/* {<CheckCircleFilled />} */}
-      {enhancerIcon()}
-    </span>
-  );
+  const iconNode = <span className={`${prefixCls}-icon`}>{enhancerIcon()}</span>;
 
-  const closeNode = (
-    <div className={`${prefixCls}-close`}>
-      {closeText ? <span className={`${prefixCls}-close-text`}>{closeText}</span> : closeIcon}
+  const CloseNode = () => (
+    <div className={`${prefixCls}-close`} onClick={handleClose}>
+      {closeText ? (
+        <span className={`${prefixCls}-close-text`}>{closeText}</span>
+      ) : isValidElement(closeIcon) ? (
+        closeIcon
+      ) : null}
     </div>
   );
 
@@ -121,12 +129,32 @@ const Alert: FC<AlertType> = (props) => {
   );
 
   return (
-    <div className={classes}>
-      {showIcon ? iconNode : null}
-      {contentNode}
-      {action ? actionNode : null}
-      {closeable ? closeNode : null}
-    </div>
+    <CSSMotion
+      visible={!close}
+      motionName={`${prefixCls}-motion`}
+      motionAppear={false}
+      motionEnter={false}
+      onLeaveStart={(node) => ({
+        maxHeight: node.offsetHeight,
+      })}
+    >
+      {({ className: motionClass, style }) => {
+        console.log('motionClass: ', motionClass);
+        return (
+          <div
+            className={classNames(alertCls, motionClass)}
+            data-show={!close}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+          >
+            {showIcon ? iconNode : null}
+            {contentNode}
+            {action ? actionNode : null}
+            {closeable ? <CloseNode /> : null}
+          </div>
+        );
+      }}
+    </CSSMotion>
   );
 };
 

@@ -5,10 +5,23 @@
   padding: $default-padding-sm $default-padding-md;
   font-size: $font-size-base;
   border-radius: $border-radius;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  position: relative;
+
+  &-content {
+    flex: 1
+  }
+
+  &-close {
+    display: flex;
+    cursor: pointer;
+  }
 
 
   &-info {
-    @include alertStyle($info1, $info)
+    @include alertStyle($info1, $info, $info2)
   }
 
   &-success {
@@ -28,10 +41,28 @@
   }
 
   &-sweet {
-    @include alertStyle($sweet1, $sweet)
+    @include alertStyle($sweet1, $sweet, $pink2)
   }
 
   &-suzukaze {
     @include alertStyle($aoba-suzukaze, $sakura-matou)
+  }
+
+  &-motion-leave {
+    overflow: hidden;
+    opacity: 1;
+    transition: max-height .3s cubic-bezier(.78, .14, .15, .86),
+      opacity .3s cubic-bezier(.78, .14, .15, .86),
+      padding-top .3s cubic-bezier(.78, .14, .15, .86),
+      padding-bottom .3s cubic-bezier(.78, .14, .15, .86),
+      margin-bottom .3s cubic-bezier(.78, .14, .15, .86)
+  }
+
+  &-motion-leave-active {
+    max-height: 0;
+    margin-bottom: 0 !important;
+    padding-top: 0;
+    padding-bottom: 0;
+    opacity: 0
   }
 }

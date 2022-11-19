@@ -80,4 +80,29 @@ export default () => {
 };
 ```
 
+```tsx
+/**
+ * title: close
+ */
+
+import React from 'react';
+import { Alert } from 'cool.ui';
+
+export default () => {
+  const handleClick = (e: React.SyntheticEvent) => {
+    console.log('onClick');
+  };
+  return (
+    <p>
+      <p>
+        <Alert message="infoAlert！" showIcon closeable />
+      </p>
+      <p>
+        <Alert type="primary" message="primaryAlert！" showIcon closeable />
+      </p>
+    </p>
+  );
+};
+```
+
 <API src='../src/components/Alert/index.ts'></API>
